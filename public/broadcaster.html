@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebRTC Broadcaster</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    video {
+      width: 100%;
+      border-radius: 8px;
+      background-color: #222;
+    }
+    
+    .controls {
+      margin: 15px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .status {
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    
+    .status-disconnected { background-color: #f44336; color: white; }
+    .status-connecting { background-color: #ff9800; color: white; }
+    .status-broadcasting { background-color: #4caf50; color: white; }
+    .status-error { background-color: #9c27b0; color: white; }
+    
+    .broadcast-info {
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+    }
+    
+    .setting-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    select, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      background-color: #2196f3;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    button:hover {
+      background-color: #0b7dda;
+    }
+    
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WebRTC Broadcaster</h1>
+    
+    <div>
+      <span id="status" class="status status-disconnected">Status: disconnected</span>
+    </div>
+    
+    <video id="localVideo" autoplay muted playsinline></video>
+    
+    <div class="settings">
+      <div class="setting-group">
+        <label for="cameraSelect">Camera:</label>
+        <select id="cameraSelect"></select>
+      </div>
+      
+      <div class="setting-group checkbox-group">
+        <label for="enableAudio">Enable Audio:</label>
+        <input type="checkbox" id="enableAudio" checked>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button id="startButton">Start Broadcasting</button>
+      <button id="stopButton" disabled>Stop Broadcasting</button>
+      <button id="copyLinkButton" disabled>Copy Viewer Link</button>
+    </div>
+    
+    <div id="broadcastInfo" class="broadcast-info"></div>
+  </div>
+  
+  <script src="js/broadcaster.js"></script>
+</body>
+</html>
